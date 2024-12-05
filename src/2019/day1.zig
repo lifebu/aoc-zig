@@ -11,7 +11,7 @@ pub fn versionA() !void {
     const startTime: i128 = std.time.nanoTimestamp();
     defer std.debug.print("Time: {d}ns\n", .{std.time.nanoTimestamp() - startTime});
 
-    const sourceDir: std.fs.Dir = try std.fs.cwd().openDir("src/aoc2019", .{});
+    const sourceDir: std.fs.Dir = try std.fs.cwd().openDir("src/2019", .{});
     const file: std.fs.File = try sourceDir.openFile("day1.txt", .{});
     defer file.close();
 
@@ -34,7 +34,7 @@ pub fn versionB() !void {
     const startTime: i128 = std.time.nanoTimestamp();
     defer std.debug.print("Time: {d}ns\n", .{std.time.nanoTimestamp() - startTime});
 
-    const sourceDir: std.fs.Dir = try std.fs.cwd().openDir("src/aoc2019", .{});
+    const sourceDir: std.fs.Dir = try std.fs.cwd().openDir("src/2019", .{});
     const file: std.fs.File = try sourceDir.openFile("day1.txt", .{});
     defer file.close();
 

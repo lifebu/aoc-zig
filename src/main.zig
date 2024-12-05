@@ -1,5 +1,7 @@
 const std = @import("std");
 
+const aoc2019d1 = @import("2019/day1.zig");
+
 pub fn main() !void {
-    std.debug.print("Hello World!\n", .{});
+    try aoc2019d1.versionA();
 }

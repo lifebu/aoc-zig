@@ -29,7 +29,7 @@ pub fn versionA() !void {
     const alloc = allocator.allocator();
     defer _ = allocator.deinit();
 
-    const sourceDir: std.fs.Dir = try std.fs.cwd().openDir("src/aoc2019", .{});
+    const sourceDir: std.fs.Dir = try std.fs.cwd().openDir("src/2019", .{});
     const input = try sourceDir.readFileAlloc(alloc, "day2.txt", std.math.maxInt(usize));
     std.debug.print("Input:\n{s}", .{input});
     defer alloc.free(input);
