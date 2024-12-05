@@ -23,6 +23,19 @@
             ]
         },
         {
+            "name": "debug_win",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/zig-out/bin/aoc-zig",
+            "args": [
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "console": "internalConsole",
+            "preLaunchTask": "build",
+        },
+        {
             "name": "debug_test_lin",
             "type": "lldb",
             "request": "launch",
