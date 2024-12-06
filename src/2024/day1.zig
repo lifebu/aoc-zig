@@ -1,4 +1,5 @@
 const std = @import("std");
+const MinHeap = @import("../util/min_heap.zig");
 
 // zig run filename
 pub fn main() !void {
@@ -13,6 +14,15 @@ pub fn main() !void {
 // What is the total distance between your list?
 pub fn versionA() !void {
     const allocator = std.heap.page_allocator;
+
+    var firstHeap = MinHeap.MinHeap(i32, 1_000){};
+    try firstHeap.insert(2);
+    std.debug.assert(firstHeap.arr[0] == 2);
+    try firstHeap.insert(3);
+    std.debug.assert(firstHeap.arr[0] == 2);
+    try firstHeap.insert(1);
+    std.debug.assert(firstHeap.arr[0] == 1);
+
 
     // TODO: Use and implement a minheap?
     var firstList = std.ArrayList(i32).init(allocator);
