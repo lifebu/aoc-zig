@@ -4,7 +4,7 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "zig build -Dcpu=x86_64 -Doptimize=Debug",
+            "command": "zig build -Dcpu=x86_64 -Doptimize=Debug -Denable-llvm=true",
             "problemMatcher": [],
             "group": {
                 "kind": "build",
@@ -14,7 +14,7 @@
         {
             "label": "build-test",
             "type": "shell",
-            "command": "zig test --test-no-exec -femit-bin=zig-out/bin/${fileBasenameNoExtension}-test ${file}",
+            "command": "zig test --test-no-exec -fllvm -femit-bin=zig-out/bin/${fileBasenameNoExtension}-test ${file}",
         },
 
         // Profiling
@@ -25,8 +25,8 @@
 			"args": [
 				"--tool=callgrind",
 				"--callgrind-out-file=zig-out/callgrind.out",
-				"${workspaceFolder}/zig-out/bin/aoc-zig",
-                "playground/link_awake.gb",
+				"${workspaceFolder}/zig-out/bin/zig-gb",
+                "playground/kirby2.dump",
 			],
 			"options": {
 				"cwd": "${workspaceFolder}"
@@ -44,7 +44,7 @@
 			"args": [
 				"--tool=cachegrind",
 				"--cachegrind-out-file=zig-out/cachegrind.out",
-				"${workspaceFolder}/zig-out/bin/aoc-zig",
+				"${workspaceFolder}/zig-out/bin/zig-gb",
 			],
 			"options": {
 				"cwd": "${workspaceFolder}"
@@ -62,7 +62,7 @@
 			"args": [
 				"--tool=massif",
 				"--massif-out-file=zig-out/massif.out",
-				"${workspaceFolder}/zig-out/bin/aoc-zig",
+				"${workspaceFolder}/zig-out/bin/zig-gb",
 			],
 			"options": {
 				"cwd": "${workspaceFolder}"
@@ -81,7 +81,7 @@
 				"--tool=memcheck",
 				"--leak-check=full",
 				"--show-leak-kinds=all",
-				"${workspaceFolder}/zig-out/bin/aoc-zig",
+				"${workspaceFolder}/zig-out/bin/zig-gb",
 			],
 			"options": {
 				"cwd": "${workspaceFolder}"

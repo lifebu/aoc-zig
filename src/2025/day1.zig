@@ -14,18 +14,27 @@ pub fn versionA() !void {
     _ = args.next(); // The file itself.
     const file_name = args.next().?;
 
-    const file: std.fs.File = try std.fs.cwd().openFile(file_name, .{});
-    defer file.close();
+    const file: []const u8 = try std.fs.cwd().readFileAlloc(alloc, file_name, std.math.maxInt(u32));
+    defer alloc.free(file);
 
-    var dial: u8 = 50;
-    var hit_zero_count = 0;
+    var dial: i16 = 50;
+    var hit_zero_count: usize = 0;
     var line_it = std.mem.splitScalar(u8, file, '\n');
     while(line_it.next()) |line| {
+        if(line.len == 0) {
+            continue;
+        }
+
         const direction: u8 = line[0];
-        const amount: u8 = try std.fmt.parseInt(u8, line[1..], 10);
+        const amount: i16 = try std.fmt.parseInt(i16, line[1..], 10);
         const movement: i16 = if(direction == 'L') -amount else amount;
+        const limit: i16 = 100;
+        dial = @mod(((dial + @mod(movement, limit)) + limit), limit);
+        if(dial == 0) {
+            hit_zero_count += 1;
+        }
     }
-    std.log.info("Hit zero count: {}\n", .{ hit_zero_count });
+    std.log.info("Hit zero count: {}", .{ hit_zero_count });
 }
 
 // https://adventofcode.com/2024/day/1#part2
